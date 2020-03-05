@@ -7,10 +7,14 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        ZStack{
+            MapView(coordinate: CLLocationCoordinate2D(latitude: 35, longitude: 135))
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

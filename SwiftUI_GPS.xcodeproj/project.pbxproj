@@ -15,6 +15,7 @@
 		33D650BD2410D89400FBCA08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33D650BB2410D89400FBCA08 /* LaunchScreen.storyboard */; };
 		33D650C82410D89400FBCA08 /* SwiftUI_GPSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D650C72410D89400FBCA08 /* SwiftUI_GPSTests.swift */; };
 		33D650D32410D89400FBCA08 /* SwiftUI_GPSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D650D22410D89400FBCA08 /* SwiftUI_GPSUITests.swift */; };
+		33D650E12410D91500FBCA08 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D650E02410D91500FBCA08 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		33D650CE2410D89400FBCA08 /* SwiftUI_GPSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUI_GPSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D650D22410D89400FBCA08 /* SwiftUI_GPSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_GPSUITests.swift; sourceTree = "<group>"; };
 		33D650D42410D89400FBCA08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33D650E02410D91500FBCA08 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				33D650BB2410D89400FBCA08 /* LaunchScreen.storyboard */,
 				33D650BE2410D89400FBCA08 /* Info.plist */,
 				33D650B82410D89400FBCA08 /* Preview Content */,
+				33D650E02410D91500FBCA08 /* MapView.swift */,
 			);
 			path = SwiftUI_GPS;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33D650B12410D89200FBCA08 /* AppDelegate.swift in Sources */,
+				33D650E12410D91500FBCA08 /* MapView.swift in Sources */,
 				33D650B32410D89200FBCA08 /* SceneDelegate.swift in Sources */,
 				33D650B52410D89200FBCA08 /* ContentView.swift in Sources */,
 			);
