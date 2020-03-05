@@ -11,6 +11,7 @@ import MapKit
 
 struct ContentView: View {
     @EnvironmentObject var lm: LocationManager
+    @State private var gps_log = [CLLocationCoordinate2D]()
     
     var latitude_str: String  { return("\(lm.location?.latitude ?? 0)") }
     var longitude_str: String { return("\(lm.location?.longitude ?? 0)") }
@@ -26,11 +27,11 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ZStack{
-                MapView(annotation: currentAnnotation)
+                MapView(annotation: currentAnnotation, gps_log: $gps_log)
                 GeometryReader{ geometry in
                     Button(action: {
                         self.lm.updateLocation()
-                        
+                        self.gps_log.append(self.currentAnnotation.coordinate)
                     }) {
                         Image(systemName: "location.circle")
                             .imageScale(.large)
