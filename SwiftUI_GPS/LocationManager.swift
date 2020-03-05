@@ -4,6 +4,7 @@ import Foundation
 import Combine
 import MapKit
 
+// NSObjectはインスタンス作成時にinitを呼び出すのでinit内にlocationManagerの初期化を書きます。
 class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
@@ -39,12 +40,17 @@ class LocationManager: NSObject, ObservableObject {
     }
 }
 
+
+// Authorizationの変化、GPSの値の変化時に呼び出される関数をextensionとして定義します
 extension LocationManager: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         self.status = status
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
+        // @publishedのself.locationを変更するとそれを利用しているViewも更新されるため地図が現在地から動かなくなります。
+        // GPSの値が更新されるたびにself.locationCacheの値を更新してキャッシュしておきます。
+        // ユーザーが任意のタイミングでGPSの現在値を取得した際にself.locationにlocationCacheをコピーすることでViewを更新します
         self.locationCache = location
     }
 }

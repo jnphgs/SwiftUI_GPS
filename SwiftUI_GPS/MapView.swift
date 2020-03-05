@@ -10,23 +10,33 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
-    var coordinate = CLLocationCoordinate2D(
-    latitude: 34.011_286, longitude: -116.166_868)
+    var annotation: MKPointAnnotation
     
     func makeUIView(context: Context) -> MKMapView {
         MKMapView(frame: .zero)
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
-        
-        let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
+        let region = MKCoordinateRegion(center: annotation.coordinate, span: view.region.span)
         view.setRegion(region, animated: true)
+        view.removeAnnotations(view.annotations)
+        view.addAnnotation(annotation)
+    }
+    
+}
+
+extension MKPointAnnotation {
+    static var example: MKPointAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.title = "London"
+        annotation.subtitle = "Home to the 2012 Summer Olympics."
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 51.5, longitude: -0.13)
+        return annotation
     }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(coordinate: CLLocationCoordinate2D(latitude: 35, longitude: 135))
+        MapView(annotation: MKPointAnnotation.example)
     }
 }

@@ -11,33 +11,40 @@ import MapKit
 
 struct ContentView: View {
     @EnvironmentObject var lm: LocationManager
-    var latitude: String  { return("\(lm.location?.latitude ?? 0)") }
-    var longitude: String { return("\(lm.location?.longitude ?? 0)") }
-    var placemark: String { return("\(lm.placemark?.description ?? "XXX")") }
-    var status: String    { return("\(lm.status.debugDescription)") }
+    
+    var latitude_str: String  { return("\(lm.location?.latitude ?? 0)") }
+    var longitude_str: String { return("\(lm.location?.longitude ?? 0)") }
+    
+    var currentAnnotation: MKPointAnnotation{
+        let newLocation = MKPointAnnotation()
+        newLocation.coordinate = CLLocationCoordinate2D(
+            latitude: (lm.location?.latitude ?? 0), longitude: (lm.location?.longitude ?? 0)
+        )
+        return newLocation
+    }
     
     var body: some View {
-        ZStack{
-            MapView(coordinate: CLLocationCoordinate2D(latitude: 35, longitude: 135))
+        VStack {
+            ZStack{
+                MapView(annotation: currentAnnotation)
+                GeometryReader{ geometry in
+                    Button(action: {
+                        self.lm.updateLocation()
+                        
+                    }) {
+                        Image(systemName: "location.circle")
+                            .imageScale(.large)
+                            .padding()
+                            .rotationEffect(Angle(degrees: 30.0))
+                            .animation(.easeInOut)
+                    }.offset(x: 0.5*geometry.size.width-40, y: 0.5*geometry.size.height-70)
+                }
+            }
             VStack {
-                Text("Latitude: \(self.latitude)")
-                Text("Longitude: \(self.longitude)")
-                Text("Placemark: \(self.placemark)")
-                Text("Status: \(self.status)")
+                Text("Latitude: \(self.latitude_str)")
+                Text("Longitude: \(self.longitude_str)")
             }
-            GeometryReader{ geometry in
-                Button(action: {
-                    self.lm.updateLocation()
-                }) {
-                    Image(systemName: "location.circle")
-                        .imageScale(.large)
-                        .padding()
-                        .rotationEffect(Angle(degrees: 30.0))
-                        .animation(.easeInOut)
-                }.offset(x: 0.5*geometry.size.width-40, y: 0.5*geometry.size.height-70)
-            }
-        }
-        .edgesIgnoringSafeArea(.all)
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 

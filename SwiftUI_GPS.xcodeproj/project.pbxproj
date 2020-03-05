@@ -107,11 +107,11 @@
 				33D650B22410D89200FBCA08 /* SceneDelegate.swift */,
 				33D650B42410D89200FBCA08 /* ContentView.swift */,
 				33D650E22410DCF100FBCA08 /* LocationManager.swift */,
+				33D650E02410D91500FBCA08 /* MapView.swift */,
 				33D650B62410D89400FBCA08 /* Assets.xcassets */,
 				33D650BB2410D89400FBCA08 /* LaunchScreen.storyboard */,
 				33D650BE2410D89400FBCA08 /* Info.plist */,
 				33D650B82410D89400FBCA08 /* Preview Content */,
-				33D650E02410D91500FBCA08 /* MapView.swift */,
 			);
 			path = SwiftUI_GPS;
 			sourceTree = "<group>";
